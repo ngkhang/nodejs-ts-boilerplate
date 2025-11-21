@@ -6,7 +6,24 @@
   "license": "ISC",
   "main": "server.js",
   "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && tsc --project tsconfig.build.json && tsc-alias",
+    "start": "node ./dist/server.js",
+    "dev": "tsx watch ./src/server.ts",
+    "type:check": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
+    "rimraf": "^6.1.2",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "nodejs",
