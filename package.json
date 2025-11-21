@@ -1,0 +1,22 @@
+{
+  "name": "node-ts-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for Node.js projects using TypeScript",
+  "author": "Khang Nguyen",
+  "license": "ISC",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "backend",
+    "boilerplate"
+  ],
+  "homepage": "https://github.com/ngkhang/nodejs-ts-boilerplate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngkhang/nodejs-ts-boilerplate.git"
+  }
+}
