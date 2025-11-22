@@ -25,7 +25,8 @@
     "exactOptionalPropertyTypes": true,
     "isolatedModules": true,
     "incremental": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
   "include": ["src"]
 }
