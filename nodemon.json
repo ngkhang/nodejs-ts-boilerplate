@@ -1,16 +1,10 @@
 {
   "verbose": true,
-  "watch": [
-    "src/",
-    ".env"
-  ],
+  "watch": ["src/", ".env"],
   "execMap": {
     "ts": "node -r ts-node/register"
   },
   "ext": "js,ts,json",
-  "ignore": [
-    "src/**/*.test.ts",
-    "test/"
-  ],
+  "ignore": ["src/**/*.test.ts", "test/"],
   "delay": 200
 }
