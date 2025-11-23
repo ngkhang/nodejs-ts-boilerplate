@@ -7,7 +7,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 export default defineConfig([
   {
-    ignores: ['**/dist/**', 'eslint.config.mjs', 'prettier.config.mjs'],
+    ignores: ['**/dist/**', 'eslint.config.mjs', 'prettier.config.mjs', 'commitlint.config.ts'],
   },
   eslintJs.configs.recommended,
   eslintPluginPrettierRecommended,
