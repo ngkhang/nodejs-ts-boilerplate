@@ -1,13 +1,14 @@
 import dotenv from 'dotenv';
 
 import { envSchema } from '@/schemas/env.schema';
-import type { EnvConfig, ProcessEnv } from '@/types/env.type';
+import type { EnvConfig, NodeEnv, ProcessEnv } from '@/types/env.type';
 import { formatJoiErrors } from '@/utils/format.util';
 
 import type { ValidationResult } from 'joi';
 
+const nodeEnv = (process.env.NODE_ENV || 'development') as NodeEnv;
 dotenv.config({
-  path: ['.env.local', '.env'],
+  path: nodeEnv === 'production' ? '.env' : `.env.${nodeEnv}.local`,
   debug: true,
 });
 
