@@ -1,54 +1,34 @@
 import dotenv from 'dotenv';
-import Joi from 'joi';
 
+import { envSchema } from '@/schemas/env.schema';
+import type { EnvConfig, ProcessEnv } from '@/types/env.type';
 import { formatJoiErrors } from '@/utils/format.util';
+
+import type { ValidationResult } from 'joi';
 
 dotenv.config({
   path: ['.env.local', '.env'],
   debug: true,
 });
 
-type NodeEnv = 'development' | 'production' | 'test';
-interface EnvConfig {
-  nodeEnv: NodeEnv;
-  app: {
-    host: string;
-    port: number;
-  };
-}
-
-interface ProcessEnv {
-  NODE_ENV: NodeEnv;
-  APP_HOST: string;
-  APP_PORT: number;
-}
-
-const envSchema = Joi.object<ProcessEnv>()
-  .keys({
-    NODE_ENV: Joi.valid('development', 'production', 'test').required(),
-    APP_HOST: Joi.string().hostname().required(),
-    APP_PORT: Joi.number().port().required(),
-  })
-  .unknown();
-
-const result: Joi.ValidationResult<ProcessEnv> = envSchema
+const envValid: ValidationResult<ProcessEnv> = envSchema
   .prefs({ errors: { label: 'key' } })
-  .validate({ ...process.env, email: 'abc' }, { abortEarly: false, stripUnknown: true });
+  .validate(process.env, { abortEarly: false, stripUnknown: true });
 
-if (result.error) {
+if (envValid.error) {
   console.error('Validation errors:');
   console.error({
-    name: result.error.name,
-    errors: formatJoiErrors(result.error),
+    name: envValid.error.name,
+    errors: formatJoiErrors(envValid.error),
   });
   process.exit(1);
 }
 
 const envConfig: EnvConfig = {
-  nodeEnv: result.value.NODE_ENV,
+  nodeEnv: envValid.value.NODE_ENV,
   app: {
-    host: result.value.APP_HOST,
-    port: result.value.APP_PORT,
+    host: envValid.value.APP_HOST,
+    port: envValid.value.APP_PORT,
   },
 };
 
